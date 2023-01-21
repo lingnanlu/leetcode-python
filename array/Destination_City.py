@@ -21,6 +21,19 @@ class First:
         for city, out in cityOut.items():
             if out == 0:
                 return city
+'''
+一种新的方式
+'''
+class First:
+    def destCity(self, paths: List[List[str]]) -> str:
+        cityOut = dict()
 
+        # 计算每个城市出度
+        for a, b in paths:
+            cityOut[a] += 1
+
+        for _, b in paths:
+            if cityOut[b] == 0:
+                return b
 
 
