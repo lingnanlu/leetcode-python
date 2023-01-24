@@ -20,8 +20,11 @@ O(m*n(m + n))
 
 方法三:
 
-方法一中, 对于每一个数都要判断一次是不是行最小和最大, 这个m +n其实重复了, 我们可以先把第一行的行最小和列最大一次性计算出来
+方法一中, 对于每一个数都要判断一次是不是行最小和最大, 这个m + n其实重复了, 我们可以先把第一行的行最小和列最大一次性计算出来
 这样就不用对于第一个元素都计算了.
+
+灵机一动:
+不要忘记了从朴素的方法优化这种优良传统.
 '''
 from typing import List
 
@@ -54,8 +57,21 @@ class Second:
 
 class Third:
     def luckyNumbers (self, matrix: List[List[int]]) -> List[int]:
+
+        ans = []
         minRow = [min(row) for row in matrix]
-        minCol =
+
+        # zip(*matrix) 一种转置矩阵的用法
+        maxCol = [max(row) for row in zip(*matrix)]
+
+        for i in range(0, len(matrix)):
+            for j in range(0, len(matrix[0])):
+                n = matrix[i][j]
+                if n == minRow[i] and n == maxCol[j]:
+                    ans.append(n)
+
+        return ans
+
 
 
 
