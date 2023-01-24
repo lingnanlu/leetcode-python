@@ -21,17 +21,18 @@ arr = [1,0,2,3,0,4,5,0]
 我们做过的就是将每一个元素平移一位那种.
 能不能利用已经做过的题的方法?
 
+现在问题是有多个0, 导致后面的数不知道要平衡几位.
+我们能不能忽略多余的0, 然后就考虑第一个, 然后平移一位?
 
 '''
 from typing import List
 
-
 class First:
+
     def duplicateZeros(self, arr: List[int]) -> None:
         """
         Do not return anything, modify arr in-place instead.
         """
-
         # 利用i遍历一遍数组, 边遍历边计算出重复0后的元素个数, 放入count中
         # zero_count用于计数这个过程中出现的0
         i = 0
@@ -49,20 +50,14 @@ class First:
             if count >= len(arr):
                 break
 
-            # 此时 count 为将[0, i)之间的数复制0之后的个数
-            # count == len(arr) or count == len(arr) + 1
-            # zero_count 为[0, i)之间的0的个数.
-            # [0, i)为最终要保留的数.
-            # 还容易知道, 如果len(arr) == count 那么, arr[i - 1] != 0
-            # 如果len(arr) + 1 == count 那么,arr[i - 1] == 0
+        # 此时 count 为将[0, i)之间的数复制0之后的个数
+        # count == len(arr) or count == len(arr) + 1
+        # zero_count 为[0, i)之间的0的个数.
+        # [0, i)为最终要保留的数.
+        # 还容易知道, 如果len(arr) == count 那么, arr[i - 1] != 0
+        # 如果len(arr) + 1 == count 那么,arr[i - 1] == 0
 
-            # 下面就是根据上面的值来对[0, i)之间的数进行平移了.
-
-            # 最后一个是0, 那么要平移
-            # zero_count - 1 # 前面还有zero_count - 1个0
-            # zero_count - 2 # 前面还有zero_count - 2个0
-            # ...
-            # 0  前面还有0个0
+        # 下面就是根据上面的值来对[0, i)之间的数进行平移了.
 
         # 依次移动[i - 1, 0]之间的数
         # zero_count 就是偏移量
@@ -76,3 +71,11 @@ class First:
                 zero_count -= 1  # 更新偏移量
             else:
                 arr[j + zero_count] = arr[j]
+
+class Second:
+
+    def duplicateZeros(self, arr: List[int]) -> None:
+
+
+
+
