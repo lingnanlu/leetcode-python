@@ -5,6 +5,8 @@
 '''
 class Solution:
     def bestHand(self, ranks: List[int], suits: List[str]) -> str:
+
+        # 这里其实指定了优先顺序, 这个规则应该放在一个单独的地方, 这样就容易使用更改规则了, 而且也更容易看的清.
         if self.checkFlush(suits):
             return "Flush"
         elif self.checkThreeOfAKind(ranks):
